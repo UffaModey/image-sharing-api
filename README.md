@@ -20,3 +20,7 @@ DATABASES = {
 ````
 
 - Run `python manage.py migrate`
+
+## Database Schema 
+View only link to database schema designs
+https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
