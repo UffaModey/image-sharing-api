@@ -4,6 +4,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
 )
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 from django.db import models
 
 from isa.models import TimeStampedUUIDModel
@@ -43,6 +44,7 @@ class User(AbstractBaseUser, TimeStampedUUIDModel, PermissionsMixin):
     username = models.CharField("Username", unique=True, max_length=225)
     is_staff = models.BooleanField(_("staff status"),default=False)
     is_active = models.BooleanField("active",default=True)
+    date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     USERNAME_FIELD = "username"
     objects = UserManager()

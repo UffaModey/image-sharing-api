@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="set up">
+    <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="post CRUD apis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,6 +52,8 @@
       <option name="presentableId" value="Default" />
       <updated>1727185743019</updated>
       <workItem from="1727185749265" duration="20091000" />
+      <workItem from="1727655592367" duration="1139000" />
+      <workItem from="1727681253145" duration="12466000" />
     </task>
     <task id="LOCAL-00001" summary="set up">
       <created>1727270614927</created>
@@ -64,7 +62,21 @@
       <option name="project" value="LOCAL" />
       <updated>1727270614929</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Database schema">
+      <created>1727658882159</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1727658882159</updated>
+    </task>
+    <task id="LOCAL-00003" summary="post CRUD apis">
+      <created>1727723512128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727723512128</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -80,9 +92,12 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="set up" />
-    <option name="LAST_COMMIT_MESSAGE" value="set up" />
+    <MESSAGE value="Database schema" />
+    <MESSAGE value="post CRUD apis" />
+    <option name="LAST_COMMIT_MESSAGE" value="post CRUD apis" />
   </component>
 </project>
