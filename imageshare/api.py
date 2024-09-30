@@ -26,7 +26,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_object(self):
         # Get the post and ensure the current user is the owner
-        post = get_object_or_404(Post, pk=self.kwargs.get('post_id'))
+        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
         return post
 
     def perform_update(self, serializer):

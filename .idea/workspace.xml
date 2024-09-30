@@ -4,13 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="Database schema">
+    <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="post CRUD apis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +69,14 @@
       <option name="project" value="LOCAL" />
       <updated>1727658882159</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="post CRUD apis">
+      <created>1727723512128</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727723512128</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -95,6 +97,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="set up" />
     <MESSAGE value="Database schema" />
-    <option name="LAST_COMMIT_MESSAGE" value="Database schema" />
+    <MESSAGE value="post CRUD apis" />
+    <option name="LAST_COMMIT_MESSAGE" value="post CRUD apis" />
   </component>
 </project>
