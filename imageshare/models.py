@@ -43,7 +43,7 @@ class Follow(TimeStampedUUIDModel):
     """
         Model representing the following relationship between users
     """
-    user = models.ForeignKey(User, related_name='followings', on_delete=models.CASCADE,
+    created_by = models.ForeignKey(User, related_name='followings', on_delete=models.CASCADE,
                              help_text='User who is following another user')
     following = models.ForeignKey(User, related_name='followers', on_delete=models.CASCADE,
                                   help_text='User who is being followed')
@@ -53,4 +53,4 @@ class Follow(TimeStampedUUIDModel):
         ordering = ['created_at']
 
     def __str__(self):
-        return f'{self.user.username} followed {self.following.username}'
+        return f'{self.created_by.username} followed {self.following.username}'
