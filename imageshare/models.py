@@ -17,10 +17,11 @@ class Post(TimeStampedUUIDModel):
 
     class Meta:
         verbose_name_plural = "Posts"
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
     def __str__(self):
-        return f'{self.created_by.username} - {self.caption[:30]}...'
+        return f'{self.caption[:30]}... by {self.created_by.username}'
+
 
 class Like(TimeStampedUUIDModel):
     """
@@ -33,10 +34,13 @@ class Like(TimeStampedUUIDModel):
 
     class Meta:
         verbose_name_plural = "Likes"
-        ordering = ['created_at']
+        ordering = ['-created_at']
+        constraints = [
+            models.UniqueConstraint(fields=['post', 'liked_by'], name='unique_like')
+        ]
 
     def __str__(self):
-        return f'{self.post.caption[:30]}... - {self.liked_by.username}'
+        return f'{self.liked_by.username} liked {self.post.caption[:30]}...'
 
 
 class Follow(TimeStampedUUIDModel):
@@ -50,7 +54,7 @@ class Follow(TimeStampedUUIDModel):
 
     class Meta:
         verbose_name_plural = "Follows"
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
     def __str__(self):
         return f'{self.created_by.username} followed {self.following.username}'

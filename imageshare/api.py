@@ -4,7 +4,7 @@ from rest_framework import status, viewsets, permissions, generics
 from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 
-from .models import Post, Follow
+from .models import Post, Follow, Like
 from users.models import User
 from rest_framework.response import Response
 from rest_framework.exceptions import ParseError
@@ -43,6 +43,57 @@ class PostViewSet(viewsets.ModelViewSet):
         if instance.created_by != self.request.user:
             raise PermissionDenied("You do not have permission to delete this post.")
         instance.delete()
+
+
+class PostLikeView(viewsets.ViewSet):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def create(self, request, *args, **kwargs):
+        """
+            Like a post
+        """
+        post = get_object_or_404(Post, id=self.kwargs.get('post_id'))
+
+        # Check if the user already liked the post
+        like, created = Like.objects.get_or_create(
+            post=post,
+            liked_by=self.request.user
+        )
+        if created:
+            return Response({'message': 'Post liked successfully'}, status=201)
+        else:
+            raise ParseError('You already like this post')
+
+    def list(self, request, *args, **kwargs):
+        """
+            List all users who liked a post
+        """
+        post = get_object_or_404(Post, id=self.kwargs.get('post_id'))
+        likes = Like.objects.filter(post=post)
+
+        # Prepare data for response
+        liked_by_users = [like.liked_by.username for like in likes]
+        data = {
+            "post_id": post.id,
+            "total_likes": likes.count(),
+            "liked_by": liked_by_users,
+        }
+
+        return Response(data)
+
+
+class PostUnlikeView(viewsets.ViewSet):
+
+    permission_classes = [permissions.IsAuthenticated]
+
+    def destroy(self, request, *args, **kwargs):
+        post = get_object_or_404(Post, id=self.kwargs.get('post_id'))
+        like = Like.objects.filter(post=post, liked_by=self.request.user).first()
+        if not like:
+            raise PermissionDenied("You do not have permission to unlike this post.")
+        like.delete()
+        return Response({'message': 'Post unliked successfully'}, status=204)
 
 
 class FollowViewSet(viewsets.ModelViewSet):

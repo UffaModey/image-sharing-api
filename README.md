@@ -24,3 +24,17 @@ DATABASES = {
 ## Database Schema 
 View only link to database schema designs
 https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
+
+
+## Linting and code formatting
+
+## Database query optimization
+
+## Code Constraints
+- Like models: Every `Like` object must be unique for the `liked_by` and `post` fields. This means that a post can only be liked once by a user.
+  -  Add a `UniqueConstraint` constraint in the model's Meta class to ensure that each combination of `post` and `liked_by` is unique, meaning a user can only like a post once.
+This will prevent duplicate likes and enforce the uniqueness at the database level.
+- 
+
+## Authentication
+using Simple JWT for DRF. Increase the token life span.
