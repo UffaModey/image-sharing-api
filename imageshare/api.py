@@ -3,6 +3,8 @@ from rest_framework import status, viewsets, permissions, generics
 
 from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
+from rest_framework.decorators import action
+from django.db.models import Count
 
 from .models import Post, Follow, Like
 from users.models import User
@@ -13,15 +15,19 @@ from .serializers import PostSerializer, FollowSerializer
 
 class PostViewSet(viewsets.ModelViewSet):
     """
-        List all posts created by the logged-in user or create a new post.
-        to do: change this to list all posts by a specified user
+        List only posts by the authenticated user and their followed users
+        (sort by most recent and the number of likes)
     """
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        # Return posts created by the authenticated user
-        return Post.objects.filter(created_by=self.request.user)
+        # Return posts by all users sorted by the number of post likes
+        queryset = Post.objects.all() \
+            .annotate(likes_count=Count('likes')) \
+            .order_by('-likes_count')
+
+        return queryset
 
     def perform_create(self, serializer):
         # Set the created_by field to the current user when creating a post
@@ -43,6 +49,34 @@ class PostViewSet(viewsets.ModelViewSet):
         if instance.created_by != self.request.user:
             raise PermissionDenied("You do not have permission to delete this post.")
         instance.delete()
+
+    @action(methods=["GET"], detail=False, pagination_class=None)
+    def followed(self, request):
+        # Return posts by the authenticated user and the users they follow sorted by most recent post
+        followings_list = [self.request.user]  # Start with the authenticated user
+        followings = Follow.objects.filter(created_by=self.request.user)  # Get the users they follow
+
+        followings_list.extend(follow.following for follow in followings)
+
+        queryset = Post.objects.filter(created_by__in=followings_list) \
+            .order_by('-created_at')
+
+        serializer = self.get_serializer(queryset, many=True)
+
+        return Response(serializer.data)
+
+    @action(methods=["GET"], detail=False, pagination_class=None)
+    def publish(self, request):
+        post_id = self.request.query_params.get("post_id")
+        post = get_object_or_404(Post, id=post_id)
+
+        if post.created_by != self.request.user:
+            raise PermissionDenied("You do not have permission to delete this post.")
+
+        data = {
+            "shareable_link": str(post.sharable_link)
+        }
+        return Response(data)
 
 
 class PostLikeView(viewsets.ViewSet):
@@ -178,7 +212,7 @@ class FollowSuggestionsViewSet(viewsets.ViewSet):
     permission_classes = [permissions.IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
-        # to do: improve algorithm later
+        # TO DO: improve algorithm later
         suggestions = []
 
         user = self.request.user

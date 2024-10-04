@@ -28,6 +28,8 @@ SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+BASE_URL = os.getenv('BASE_URL', default='https://127.0.0.1:8000')
+
 
 ALLOWED_HOSTS = []
 
