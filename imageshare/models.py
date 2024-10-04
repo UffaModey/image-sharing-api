@@ -22,6 +22,10 @@ class Post(TimeStampedUUIDModel):
     def __str__(self):
         return f'{self.caption[:30]}... by {self.created_by.username}'
 
+    @property
+    def sharable_link(self):
+        return f'{settings.BASE_URL}/posts/{str(self.id)}'
+
 
 class Like(TimeStampedUUIDModel):
     """
@@ -55,6 +59,9 @@ class Follow(TimeStampedUUIDModel):
     class Meta:
         verbose_name_plural = "Follows"
         ordering = ['-created_at']
+        constraints = [
+            models.UniqueConstraint(fields=['created_by', 'following'], name='unique_follow')
+        ]
 
     def __str__(self):
         return f'{self.created_by.username} followed {self.following.username}'

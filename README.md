@@ -1,6 +1,9 @@
 # Image-sharing-api
 a small-scale REST API that supports an image-sharing application using Python
 
+## API Documentation
+Postman workspace https://web.postman.co/workspace/c0e590d6-b641-4fad-8cca-1f40edb78201
+
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
 - Create an Azure PostgreSQL resource on Azure portal.
@@ -34,6 +37,9 @@ https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
 - Like models: Every `Like` object must be unique for the `liked_by` and `post` fields. This means that a post can only be liked once by a user.
   -  Add a `UniqueConstraint` constraint in the model's Meta class to ensure that each combination of `post` and `liked_by` is unique, meaning a user can only like a post once.
 This will prevent duplicate likes and enforce the uniqueness at the database level.
+- Follow models: Every `Follow` object must be unique for the `created_by` and `following` fields. This means that a user cannot follow themselves. 
+  - Add a `UniqueConstraint` constraint in the model's Meta class to ensure that each combination of `created_by` and `following` is unique.
+This will enforce the uniqueness at the database level.
 - 
 
 ## Authentication
