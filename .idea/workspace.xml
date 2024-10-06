@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imageshare/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageshare/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

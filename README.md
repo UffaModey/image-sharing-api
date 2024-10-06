@@ -2,7 +2,7 @@
 a small-scale REST API that supports an image-sharing application using Python
 
 ## API Documentation
-Postman workspace https://web.postman.co/workspace/c0e590d6-b641-4fad-8cca-1f40edb78201
+API reference doc on Postman 
 
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
@@ -32,6 +32,7 @@ https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
 ## Linting and code formatting
 
 ## Database query optimization
+- use select_related to manage database queries with many to one relationship
 
 ## Code Constraints
 - Like models: Every `Like` object must be unique for the `liked_by` and `post` fields. This means that a post can only be liked once by a user.
