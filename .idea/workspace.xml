@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="post like, unlike and list likes  apis">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/imageshare/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

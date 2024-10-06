@@ -41,7 +41,10 @@ This will prevent duplicate likes and enforce the uniqueness at the database lev
 - Follow models: Every `Follow` object must be unique for the `created_by` and `following` fields. This means that a user cannot follow themselves. 
   - Add a `UniqueConstraint` constraint in the model's Meta class to ensure that each combination of `created_by` and `following` is unique.
 This will enforce the uniqueness at the database level.
-- 
 
 ## Authentication
 using Simple JWT for DRF. Increase the token life span.
+
+## Additional Features
+- Pagination for `Posts` using `rest_framework` `PageNumberPagination`
+- Basic search for posts by caption using `rest_framework` filters.
