@@ -26,7 +26,6 @@ class PostViewSet(viewsets.ModelViewSet):
         queryset = Post.objects.all() \
             .annotate(likes_count=Count('likes')) \
             .order_by('-likes_count')
-
         return queryset
 
     def perform_create(self, serializer):
@@ -136,6 +135,7 @@ class FollowViewSet(viewsets.ModelViewSet):
     """
     serializer_class = FollowSerializer
     permission_classes = [permissions.IsAuthenticated]
+    http_method_names = ['post', 'delete']  # Allow only POST and DELETE methods
 
     def get_queryset(self):
         # Return follow details for a given user
@@ -157,29 +157,8 @@ class FollowViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("Unable to unfollow user")
         instance.delete()
 
-    def retrieve(self, request, *args, **kwargs):
-        """
-        Custom retrieve to return follow details in the required format.
-        """
-        # Get the user whose follow details are requested
-        user_id = self.kwargs.get('pk')  # 'pk' can represent the user_id from the URL
-        user = get_object_or_404(User, id=user_id)
 
-        # Get followers and followings for the user
-        followers = Follow.objects.filter(following=user).values_list('created_by__username', flat=True)
-        followings = Follow.objects.filter(created_by=user).values_list('following__username', flat=True)
-
-        # Return the custom response format
-        data = {
-            "username": user.username,
-            "followers": list(followers),  # List of usernames who follow this user
-            "following": list(followings)  # List of usernames this user is following
-        }
-
-        return Response(data)
-
-
-class MutualFollowViewSet(viewsets.ViewSet):
+class MutualFollowersViewSet(viewsets.ViewSet):
     """
     View to show mutual followings between the authenticated user and a target user.
     """
@@ -189,17 +168,18 @@ class MutualFollowViewSet(viewsets.ViewSet):
         user_id = self.kwargs.get('pk')  # Get user_id from URL
         user = get_object_or_404(User, id=user_id)
 
-        # Get the list of users the authenticated user follows
-        self_followings = Follow.objects.filter(created_by=self.request.user).values_list('following__username', flat=True)
-        # Get the list of users the target user follows
-        user_followings = Follow.objects.filter(created_by=user).values_list('following__username', flat=True)
+        # Get the list of users who follow the authenticated user
+        self_followers = Follow.objects.filter(following=self.request.user).values_list('created_by__username',
+                                                                                        flat=True)
+        # Get the list of users who follow the target user
+        user_follower = Follow.objects.filter(following=user).values_list('created_by__username', flat=True)
 
         # Use intersection (&) to find mutuals
-        mutuals = set(self_followings) & set(user_followings)
+        mutuals = set(self_followers) & set(user_follower)
 
         # Prepare data for response
         data = {
-            "mutual_following": list(mutuals),  # List of mutual following usernames
+            "mutual_followers": list(mutuals),  # List of mutual following usernames
         }
 
         return Response(data)
