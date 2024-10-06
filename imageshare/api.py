@@ -5,6 +5,9 @@ from rest_framework.exceptions import PermissionDenied
 from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 from django.db.models import Count
+from rest_framework import filters
+from django.db.models import Q
+from .utils.pagination import PostsPagination
 
 from .models import Post, Follow, Like
 from users.models import User
@@ -20,6 +23,9 @@ class PostViewSet(viewsets.ModelViewSet):
     """
     serializer_class = PostSerializer
     permission_classes = [permissions.IsAuthenticated]
+    pagination_class = PostsPagination
+    filter_backends = [filters.SearchFilter]  # Add search filter backend
+    search_fields = ['caption']  # Specify fields for search
 
     def get_queryset(self):
         # Return posts by all users sorted by the number of post likes
@@ -49,8 +55,11 @@ class PostViewSet(viewsets.ModelViewSet):
             raise PermissionDenied("You do not have permission to delete this post.")
         instance.delete()
 
-    @action(methods=["GET"], detail=False, pagination_class=None)
+    @action(methods=["GET"], detail=False)
     def followed(self, request):
+        # Get the search term from the request, if provided
+        search_query = request.query_params.get('search', None)
+
         # Return posts by the authenticated user and the users they follow sorted by most recent post
         followings_list = [self.request.user]  # Start with the authenticated user
         followings = Follow.objects.filter(created_by=self.request.user)  # Get the users they follow
@@ -60,8 +69,16 @@ class PostViewSet(viewsets.ModelViewSet):
         queryset = Post.objects.filter(created_by__in=followings_list) \
             .order_by('-created_at')
 
-        serializer = self.get_serializer(queryset, many=True)
+        # Apply search filter if a search query is provided
+        if search_query:
+            queryset = queryset.filter(Q(caption__icontains=search_query))
 
+        page = self.paginate_queryset(queryset)
+        if page is not None:
+            serializer = self.get_serializer(page, many=True)
+            return self.get_paginated_response(serializer.data)
+
+        serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data)
 
     @action(methods=["GET"], detail=False, pagination_class=None)
