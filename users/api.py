@@ -5,10 +5,13 @@ from rest_framework.permissions import AllowAny
 
 from .models import User
 from .serializers import UserSerializer
+from .utils.pagination import UsersPagination
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all()
+    queryset = User.objects.prefetch_related('posts').prefetch_related('followings')\
+        .prefetch_related('followers').all()
     serializer_class = UserSerializer
+    pagination_class= UsersPagination
 
 
     def get_permissions(self):
@@ -17,5 +20,6 @@ class UserViewSet(viewsets.ModelViewSet):
         else:  # All other actions require authentication
             self.permission_classes = [permissions.IsAuthenticated]
         return super().get_permissions()
+
     def perform_create(self, serializer):
         serializer.save()
