@@ -29,9 +29,8 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # Return posts by all users sorted by the number of post likes
-        queryset = Post.objects.all() \
-            .annotate(likes_count=Count('likes')) \
-            .order_by('-likes_count')
+        queryset = Post.objects.prefetch_related('likes').all()\
+            .annotate(likes_count=Count('likes')).order_by('-likes_count')
         return queryset
 
     def perform_create(self, serializer):
@@ -62,11 +61,11 @@ class PostViewSet(viewsets.ModelViewSet):
 
         # Return posts by the authenticated user and the users they follow sorted by most recent post
         followings_list = [self.request.user]  # Start with the authenticated user
-        followings = Follow.objects.filter(created_by=self.request.user)  # Get the users they follow
+        followings = Follow.objects.select_related('following').filter(created_by=self.request.user)  # Get the users they follow
 
         followings_list.extend(follow.following for follow in followings)
 
-        queryset = Post.objects.filter(created_by__in=followings_list) \
+        queryset = self.get_queryset().filter(created_by__in=followings_list) \
             .order_by('-created_at')
 
         # Apply search filter if a search query is provided
@@ -162,11 +161,14 @@ class FollowViewSet(viewsets.ModelViewSet):
         # Get the user the authenticated user wants to follow using the following_id
         following_id = self.request.data.get("following")
         following = User.objects.get(id=following_id)
-        if Follow.objects.filter(created_by=self.request.user, following=following).exists():
-            raise ParseError('You are already following this user')
+        if str(self.request.user.id) == str(following_id):
+            raise ParseError('You cannot follow yourself')
 
-        # Save the follow relationship with the authenticated user as 'created_by'
-        serializer.save(created_by=self.request.user, following=following)
+        try:
+            # Save the follow relationship with the authenticated user as 'created_by'
+            serializer.save(created_by=self.request.user, following=following)
+        except Exception as e:
+            raise ParseError('Unable to follow this user: {}'.format(e))
 
     def perform_destroy(self, instance):
         # Ensure only the user that created the follow can unfollow
@@ -250,8 +252,8 @@ class FollowSuggestionsViewSet(viewsets.ViewSet):
         if not suggestions:
             suggest_user = User.objects.filter(is_staff=False, is_active=True).exclude(id=user.id).first()
             suggestions.append(suggest_user)
-
+        suggestion = set(user.username for user in suggestions)  # Creates a set of unique usernames
         data = {
-            "suggestions": [user.username for user in suggestions]
+            "suggestions": list(suggestion)
         }
         return Response(data)
