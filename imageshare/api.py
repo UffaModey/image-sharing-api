@@ -56,21 +56,20 @@ class PostViewSet(viewsets.ModelViewSet):
 
     @action(methods=["GET"], detail=False)
     def followed(self, request):
-        # Get the search term from the request, if provided
         search_query = request.query_params.get('search', None)
 
-        # Return posts by the authenticated user and the users they follow sorted by most recent post
-        followings_list = [self.request.user]  # Start with the authenticated user
-        followings = Follow.objects.select_related('following').filter(created_by=self.request.user)  # Get the users they follow
+        # Retrieve the following users' posts in a single query
+        followings_list = list(Follow.objects.filter(created_by=self.request.user).values_list('following', flat=True))
+        followings_list.append(self.request.user.id)  # Add the current user to the list
 
-        followings_list.extend(follow.following for follow in followings)
-
-        queryset = self.get_queryset().filter(created_by__in=followings_list) \
-            .order_by('-created_at')
+        queryset = self.get_queryset().filter(created_by__in=followings_list).order_by('-created_at')
 
         # Apply search filter if a search query is provided
         if search_query:
-            queryset = queryset.filter(Q(caption__icontains=search_query))
+            queryset = queryset.filter(caption__icontains=search_query)
+
+        # Optimize by prefetching and selecting related fields
+        queryset = queryset.select_related('created_by').prefetch_related('likes')
 
         page = self.paginate_queryset(queryset)
         if page is not None:
