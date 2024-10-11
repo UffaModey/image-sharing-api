@@ -12,7 +12,7 @@ from .utils.pagination import PostsPagination
 from .models import Post, Follow, Like
 from users.models import User
 from rest_framework.response import Response
-from rest_framework.exceptions import ParseError
+from rest_framework.exceptions import ParseError, NotFound
 from .serializers import PostSerializer, FollowSerializer
 
 
@@ -38,8 +38,10 @@ class PostViewSet(viewsets.ModelViewSet):
         serializer.save(created_by=self.request.user)
 
     def get_object(self):
-        # Get the post and ensure the current user is the owner
-        post = get_object_or_404(Post, id=self.kwargs.get('pk'))
+        post = Post.objects.prefetch_related('likes', 'created_by').get(id=self.kwargs.get('pk'))
+
+        if not post:
+            raise NotFound()
         return post
 
     def perform_update(self, serializer):

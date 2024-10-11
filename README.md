@@ -74,6 +74,10 @@ The number of queries increased with the number of users in the DB.
   - previous code had 12 queries including 9 similar and 7 duplicates and total run time 527.50 ms.
   - include `prefect_related` in query for Posts to get the `created_by` field for posts.
     - 161.80 ms (5 queries )
+- Get a Post API Endpoint - http://127.0.0.1:8000/imageshare/posts/<post_id>
+  - previous query ran in 174.72 ms (7 queries including 6 similar and 6 duplicates ) for a post with 3 likes.
+  - include `prefect_related` in query for Posts to get the `created_by` and `likes` fields for posts.
+    - 167.60 ms (4 queries ) independent of the number of likes on a post.
 - 
 ### Don’t retrieve things you don’t need
 - 
