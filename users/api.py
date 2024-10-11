@@ -8,8 +8,7 @@ from .serializers import UserSerializer
 from .utils.pagination import UsersPagination
 
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.prefetch_related('posts').prefetch_related('followings')\
-        .prefetch_related('followers').all()
+    queryset = User.objects.prefetch_related('posts', 'followings', 'followers').all()
     serializer_class = UserSerializer
     pagination_class= UsersPagination
 
