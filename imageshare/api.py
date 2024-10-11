@@ -121,14 +121,15 @@ class PostLikeView(viewsets.ViewSet):
         """
             List all users who liked a post
         """
-        post = get_object_or_404(Post, id=self.kwargs.get('post_id'))
-        likes = Like.objects.filter(post=post)
+        queryset = Post.objects.prefetch_related('likes').get(id=self.kwargs.get('post_id'))
+        # post = get_object_or_404(Post, id=self.kwargs.get('post_id'))
+        likes = queryset.likes.select_related('liked_by').all()
 
         # Prepare data for response
         liked_by_users = [like.liked_by.username for like in likes]
         data = {
-            "post_id": post.id,
-            "total_likes": likes.count(),
+            "post_id": queryset.id,
+            "total_likes": queryset.likes.count(),
             "liked_by": liked_by_users,
         }
 
