@@ -86,7 +86,7 @@
       <workItem from="1727681253145" duration="12466000" />
       <workItem from="1728246204832" duration="19000" />
       <workItem from="1728246268794" duration="28940000" />
-      <workItem from="1728462116101" duration="12499000" />
+      <workItem from="1728462116101" duration="15174000" />
     </task>
     <task id="LOCAL-00001" summary="set up">
       <created>1727270614927</created>
@@ -165,7 +165,14 @@
       <option name="project" value="LOCAL" />
       <updated>1728638834873</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="improve db query for mutual followers for a user">
+      <created>1728640792249</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1728640792249</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +206,7 @@
     <MESSAGE value="improve db query for retrieving a post and the likes count on the post" />
     <MESSAGE value="improve db query for publishing a post" />
     <MESSAGE value="improve db query for getting likes on a post" />
-    <option name="LAST_COMMIT_MESSAGE" value="improve db query for getting likes on a post" />
+    <MESSAGE value="improve db query for mutual followers for a user" />
+    <option name="LAST_COMMIT_MESSAGE" value="improve db query for mutual followers for a user" />
   </component>
 </project>

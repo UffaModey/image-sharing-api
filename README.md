@@ -90,6 +90,11 @@ The number of queries increased with the number of users in the DB.
   - previous query ran in 122.84 ms (4 queries including 4 similar )
   - performing the entire operation in the database is more efficient than filtering in Python, resulting in faster query execution.
     - 78.22 ms (3 queries including 2 similar)
+- Get Follow suggestions API Endpoint - http://127.0.0.1:8000/imageshare/follow-suggestions/
+  - previous query ran in  679.07 ms (21 queries including 21 similar and 14 duplicates )
+  - combines the queries for followings of followings, followers of followings, and mutual followers into fewer, larger queries. It excludes the current user and anyone the user is already following.
+Instead of appending each user one-by-one in a loop, all suggestions are now processed at once, and the final list of suggested_users is retrieved in a single query.
+    - 192.96 ms (5 queries )
 ### Don’t retrieve things you don’t need
 - 
 
@@ -103,6 +108,7 @@ This will enforce the uniqueness at the database level.
 - User model: Every user must have a unique email address if they provide one.
   - Add a `UniqueConstraint` constraint in the model's Meta class to ensure that each User object cannot have duplicate email fields.
 - Follow API - Put condition in the `perform_create` method for this api view to ensure that the authenticated user is unable to follow themselves.
+- Follow suggestions - Do not include the authenticated user as a follow suggestion
 
 ## Authentication
 using Simple JWT for DRF. Increase the token life span.

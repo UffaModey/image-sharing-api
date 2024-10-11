@@ -214,48 +214,43 @@ class FollowSuggestionsViewSet(viewsets.ViewSet):
 
     def list(self, request, *args, **kwargs):
         # TO DO: improve algorithm later
-        suggestions = []
 
         user = self.request.user
-        user_followings = Follow.objects.filter(created_by=user)
-        user_followers = Follow.objects.filter(following=user)
 
-        user_followings_users_list = []
-        if user_followings:
-            for follow in user_followings:
-                user_followings_users_list.append(follow.following)
+        # Get IDs of users the current user is following
+        user_following_ids = Follow.objects.filter(created_by=user).values_list('following_id', flat=True)
 
-            user_following_following = Follow.objects.filter(created_by=user_followings[0].following)
-            if user_following_following:
-                for follow in user_following_following:
-                    if follow.following not in user_followings_users_list:
-                        suggestions.append(follow.following)
-                        continue
-            user_following_followers = Follow.objects.filter(following=user_followings[0].following)
-            if user_following_followers:
-                for follow in user_following_followers:
-                    if follow.created_by not in user_followings_users_list:
-                        suggestions.append(follow.created_by)
-                        continue
-        if user_followers:
-            user_followers_following = Follow.objects.filter(following=user_followers[0].created_by)
-            if user_followers_following:
-                for follow in user_followers_following:
-                    if follow.created_by not in user_followings_users_list:
-                        suggestions.append(follow.created_by)
-                        continue
-            user_followers_followers = Follow.objects.filter(created_by=user_followings[0].created_by)
-            if user_followers_followers:
-                for follow in user_followers_followers:
-                    if follow.following not in user_followings_users_list:
-                        suggestions.append(follow.following)
-                        continue
+        # Find second-degree connections (followings of followings) that the user does not follow
+        followings_of_followings = Follow.objects.filter(created_by__in=user_following_ids) \
+            .exclude(following__in=user_following_ids) \
+            .exclude(following=user) \
+            .select_related('following') \
+            .values_list('following', flat=True)
 
-        if not suggestions:
-            suggest_user = User.objects.filter(is_staff=False, is_active=True).exclude(id=user.id).first()
-            suggestions.append(suggest_user)
-        suggestion = set(user.username for user in suggestions)  # Creates a set of unique usernames
+        # Find followers of those the user is following
+        followers_of_followings = Follow.objects.filter(following__in=user_following_ids) \
+            .exclude(created_by__in=user_following_ids) \
+            .exclude(created_by=user) \
+            .select_related('created_by') \
+            .values_list('created_by', flat=True)
+
+        # Get mutual followers of the user's followers
+        user_follower_ids = Follow.objects.filter(following=user).values_list('created_by_id', flat=True)
+        mutual_followers_of_followers = Follow.objects.filter(created_by__in=user_follower_ids) \
+            .exclude(following__in=user_following_ids) \
+            .exclude(following=user) \
+            .select_related('following') \
+            .values_list('following', flat=True)
+
+        # Collect all suggested user IDs
+        suggestion_ids = set(followings_of_followings) | set(followers_of_followings) | set(mutual_followers_of_followers)
+
+        # Fetch user objects for unique suggestion IDs
+        suggested_users = User.objects.filter(id__in=suggestion_ids, is_staff=False, is_active=True) \
+            .exclude(id=user.id)
+
+        # Prepare response data
         data = {
-            "suggestions": list(suggestion)
+            "suggestions": list(suggested_users.values_list('username', flat=True))  # Returns a list of unique usernames
         }
         return Response(data)
