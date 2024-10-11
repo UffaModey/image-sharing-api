@@ -183,7 +183,7 @@ class FollowViewSet(viewsets.ModelViewSet):
 
 class MutualFollowersViewSet(viewsets.ViewSet):
     """
-    View to show mutual followings between the authenticated user and a target user.
+    View to show mutual followers between the authenticated user and a target user.
     """
     permission_classes = [permissions.IsAuthenticated]
 
@@ -191,16 +191,14 @@ class MutualFollowersViewSet(viewsets.ViewSet):
         user_id = self.kwargs.get('pk')  # Get user_id from URL
         user = get_object_or_404(User, id=user_id)
 
-        # Get the list of users who follow the authenticated user
-        self_followers = Follow.objects.filter(following=self.request.user).values_list('created_by__username',
-                                                                                        flat=True)
-        # Get the list of users who follow the target user
-        user_follower = Follow.objects.filter(following=user).values_list('created_by__username', flat=True)
+        # mutual followers query
+        mutuals = Follow.objects.filter(
+            following__in=[self.request.user, user]
+        ).values('created_by__username') \
+            .annotate(follow_count=Count('following')) \
+            .filter(follow_count=2) \
+            .values_list('created_by__username', flat=True)
 
-        # Use intersection (&) to find mutuals
-        mutuals = set(self_followers) & set(user_follower)
-
-        # Prepare data for response
         data = {
             "mutual_followers": list(mutuals),  # List of mutual following usernames
         }

@@ -83,10 +83,13 @@ The number of queries increased with the number of users in the DB.
   - include `prefect_related` in query for Posts to get the `created_by` fields for posts.
     - 91.16 ms (3 queries )
 - Get Post likes API Endpoint - http://127.0.0.1:8000/imageshare/post/<post_id/like
-  - previous query ran in default 236.23 ms (7 queries including 5 similar and 2 duplicates ) for a post with 4 likes.
+  - previous query ran in 236.23 ms (7 queries including 5 similar and 2 duplicates ) for a post with 4 likes.
   - include `prefect_related` in query for Posts to get the `likes` fields for posts and include `select_related` for the Likes query to get the `liked_by` field.
     - 134.26 ms (4 queries ) independent of the amount of likes on a post.
-- 
+- Get Mutual followers API Endpoint - http://127.0.0.1:8000/imageshare/mutual-followers/<user_id>/
+  - previous query ran in 122.84 ms (4 queries including 4 similar )
+  - performing the entire operation in the database is more efficient than filtering in Python, resulting in faster query execution.
+    - 78.22 ms (3 queries including 2 similar)
 ### Don’t retrieve things you don’t need
 - 
 
