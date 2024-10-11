@@ -84,8 +84,10 @@ class PostViewSet(viewsets.ModelViewSet):
     @action(methods=["GET"], detail=False, pagination_class=None)
     def publish(self, request):
         post_id = self.request.query_params.get("post_id")
-        post = get_object_or_404(Post, id=post_id)
+        post = Post.objects.prefetch_related('created_by').get(id=post_id)
 
+        if not post:
+            raise NotFound()
         if post.created_by != self.request.user:
             raise PermissionDenied("You do not have permission to delete this post.")
 

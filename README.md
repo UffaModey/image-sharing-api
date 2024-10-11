@@ -78,6 +78,10 @@ The number of queries increased with the number of users in the DB.
   - previous query ran in 174.72 ms (7 queries including 6 similar and 6 duplicates ) for a post with 3 likes.
   - include `prefect_related` in query for Posts to get the `created_by` and `likes` fields for posts.
     - 167.60 ms (4 queries ) independent of the number of likes on a post.
+- Get sharable link for a Post API Endpoint (Publish post) - http://127.0.0.1:8000/imageshare/posts/publish?post_id=<id>
+  - previous query ran in default 572.20 ms (3 queries including 2 similar and 2 duplicates )
+  - include `prefect_related` in query for Posts to get the `created_by` fields for posts.
+    - 91.16 ms (3 queries )
 - 
 ### Don’t retrieve things you don’t need
 - 
