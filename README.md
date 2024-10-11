@@ -52,9 +52,8 @@ The following methods were used to review queries and monitor database usage.
 ### Standard DB optimization techniques
 - Indexes were used for all `filter()` queries to  speed up lookups.
 - Appropriate use of field types in database models.
-- 
-
-### Do database work in the database rather than in Python
+- Don’t retrieve things you don’t need
+- Do database work in the database rather than in Python
 
 ### Retrieve everything at once if you know you will need it
 - To reduce the number of database queries, and increase the performance of the api, prefetch_related was used 
@@ -95,8 +94,6 @@ The number of queries increased with the number of users in the DB.
   - combines the queries for followings of followings, followers of followings, and mutual followers into fewer, larger queries. It excludes the current user and anyone the user is already following.
 Instead of appending each user one-by-one in a loop, all suggestions are now processed at once, and the final list of suggested_users is retrieved in a single query.
     - 192.96 ms (5 queries )
-### Don’t retrieve things you don’t need
-- 
 
 ## Code Constraints
 - Like model: Every `Like` object must be unique for the `liked_by` and `post` fields. This means that a post can only be liked once by a user.
