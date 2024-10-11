@@ -63,14 +63,18 @@ to manage database queries with many-to-one relationship.
   - reference to previous code version with 57 DB queries to list 8 users  in 1678.49 ms (54 queries were similar).
 The number of queries increased with the number of users in the DB.
   - updated code to reduce DB query to 6 in 172.45ms. The number  of queries this API makes to the DB is independent of the number of user in the DB.
-- API Endpoint - http://127.0.0.1:8000/imageshare/posts/followed
+- List Posts for followed users API Endpoint - http://127.0.0.1:8000/imageshare/posts/followed
   - reference to previous code version (465.88 ms (14 queries including 11 similar and 7 duplicates) for 4 posts). The number of queries depend on the number of posts that are returned within the request.
   - updated code to improve this endpoint to only 5 queries in 180.30ms regardless of the amount of posts by followed users.
     - include prefect_related in query for Posts to get the likes counts without repetition.
     - Get the `ids` of users that the authenticated user follows and put them in a list including the `id` of the authenticated user. 
     Filter the Post queryset for posts where the `created_by` fields in the following list. 
     Optimize by prefetching and selecting related fields for `created_by` and `likes`
-
+- List Posts for all users API Endpoint - http://127.0.0.1:8000/imageshare/posts
+  - previous code had 12 queries including 9 similar and 7 duplicates and total run time 527.50 ms.
+  - include `prefect_related` in query for Posts to get the `created_by` field for posts.
+    - 161.80 ms (5 queries )
+- 
 ### Don’t retrieve things you don’t need
 - 
 

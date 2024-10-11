@@ -29,7 +29,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         # Return posts by all users sorted by the number of post likes
-        queryset = Post.objects.prefetch_related('likes').all()\
+        queryset = Post.objects.prefetch_related('likes', 'created_by').all()\
             .annotate(likes_count=Count('likes')).order_by('-likes_count')
         return queryset
 
