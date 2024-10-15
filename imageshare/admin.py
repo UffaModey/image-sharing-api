@@ -19,4 +19,3 @@ class PostAdmin(admin.ModelAdmin):
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
     list_display = ["id", "post", "liked_by"]
-
