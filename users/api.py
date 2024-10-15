@@ -7,14 +7,14 @@ from .models import User
 from .serializers import UserSerializer
 from .utils.pagination import UsersPagination
 
-class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.prefetch_related('posts', 'followings', 'followers').all()
-    serializer_class = UserSerializer
-    pagination_class= UsersPagination
 
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.prefetch_related("posts", "followings", "followers").all()
+    serializer_class = UserSerializer
+    pagination_class = UsersPagination
 
     def get_permissions(self):
-        if self.action == 'create':  # Allow anyone to register
+        if self.action == "create":  # Allow anyone to register
             self.permission_classes = [AllowAny]
         else:  # All other actions require authentication
             self.permission_classes = [permissions.IsAuthenticated]

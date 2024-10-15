@@ -7,13 +7,15 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0002_remove_user_email_idx_remove_user_username_idx_and_more'),
+        ("users", "0002_remove_user_email_idx_remove_user_username_idx_and_more"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='user',
-            name='date_joined',
-            field=models.DateTimeField(default=django.utils.timezone.now, verbose_name='date joined'),
+            model_name="user",
+            name="date_joined",
+            field=models.DateTimeField(
+                default=django.utils.timezone.now, verbose_name="date joined"
+            ),
         ),
     ]

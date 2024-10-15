@@ -6,26 +6,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('users', '0001_initial'),
+        ("users", "0001_initial"),
     ]
 
     operations = [
         migrations.RemoveIndex(
-            model_name='user',
-            name='email_idx',
+            model_name="user",
+            name="email_idx",
         ),
         migrations.RemoveIndex(
-            model_name='user',
-            name='username_idx',
+            model_name="user",
+            name="username_idx",
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_active',
-            field=models.BooleanField(default=True, verbose_name='active'),
+            model_name="user",
+            name="is_active",
+            field=models.BooleanField(default=True, verbose_name="active"),
         ),
         migrations.AlterField(
-            model_name='user',
-            name='is_staff',
-            field=models.BooleanField(default=False, verbose_name='staff status'),
+            model_name="user",
+            name="is_staff",
+            field=models.BooleanField(default=False, verbose_name="staff status"),
         ),
     ]

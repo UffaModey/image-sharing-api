@@ -41,6 +41,9 @@ https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
 
 
 ## Linting and code formatting
+We used [Black](https://pypi.org/project/black/) to format code to the PEP8 standard
+
+`poetry add black`
 
 ## Testing
 Unit tests that cover the core functionality using Pytest and the native APIClient library. 
@@ -144,4 +147,7 @@ using Simple JWT for DRF. Increase the token life span from default 5 minutes in
 ## Django Admin
 - Add `list_filter` in the Follow admin view for the `created_by` and `following` fields to make it easy to view the followers of a specific user or to view the users that a specific user follows.
 - Add `search_fields` and `list_filter` for Post admin view to enable an admin user to search for a post by its `caption` or `id` or filter posts by the `created_by` field.
-- 
+
+## API Rate Limiting
+
+## AI Image Classification and Caption Generation

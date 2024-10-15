@@ -9,6 +9,7 @@ from django.db import models
 
 from isa.models import TimeStampedUUIDModel
 
+
 class UserManager(BaseUserManager):
     use_in_migrations = True
 
@@ -37,13 +38,16 @@ class UserManager(BaseUserManager):
     def create_superuser(self, username: str, password: str, **extra_fields):
         return self._create_user(username, password, True, True, **extra_fields)
 
+
 class User(AbstractBaseUser, TimeStampedUUIDModel, PermissionsMixin):
-    first_name = models.CharField(_("First Name"), max_length=120, null=True, blank=True)
+    first_name = models.CharField(
+        _("First Name"), max_length=120, null=True, blank=True
+    )
     last_name = models.CharField(_("Last Name"), max_length=120, null=True, blank=True)
     email = models.EmailField(_("Email Address"), null=True, blank=True)
     username = models.CharField("Username", unique=True, max_length=225)
-    is_staff = models.BooleanField(_("staff status"),default=False)
-    is_active = models.BooleanField("active",default=True)
+    is_staff = models.BooleanField(_("staff status"), default=False)
+    is_active = models.BooleanField("active", default=True)
     date_joined = models.DateTimeField(_("date joined"), default=timezone.now)
 
     USERNAME_FIELD = "username"

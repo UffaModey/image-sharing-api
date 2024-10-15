@@ -6,13 +6,13 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('imageshare', '0002_rename_created_by_like_liked_by'),
+        ("imageshare", "0002_rename_created_by_like_liked_by"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='follow',
-            old_name='user',
-            new_name='created_by',
+            model_name="follow",
+            old_name="user",
+            new_name="created_by",
         ),
     ]

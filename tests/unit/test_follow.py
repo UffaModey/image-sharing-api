@@ -5,13 +5,13 @@ from tests.utils import _test_authenticate_user
 
 pytestmark = pytest.mark.django_db
 
+
 def test_follow_self(api_client) -> None:
     """
     Test follow self
     """
-    user = _test_authenticate_user(api_client, 'username', 'password123')
-    payload = {
-        "following": str(user.id)  }
+    user = _test_authenticate_user(api_client, "username", "password123")
+    payload = {"following": str(user.id)}
 
     response = api_client.post("/imageshare/follow", data=payload)
     assert response.status_code == 400
@@ -21,21 +21,21 @@ def test_follow_an_already_followed_user(api_client) -> None:
     """
     Test follow an already followed user
     """
-    auth_user = _test_authenticate_user(api_client, 'username', 'password123')
+    auth_user = _test_authenticate_user(api_client, "username", "password123")
     user = f.create_user()
     f.create_follow(created_by=auth_user, following=user)
-    payload = {
-        "following": str(user.id)  }
+    payload = {"following": str(user.id)}
 
     response = api_client.post("/imageshare/follow", data=payload)
     assert response.status_code == 400
 
+
 @pytest.mark.django_db(transaction=True)
 def test_mutual_followers(api_client) -> None:
     """
-        Test mutual followers
+    Test mutual followers
     """
-    auth_user = _test_authenticate_user(api_client, 'username', 'password123')
+    auth_user = _test_authenticate_user(api_client, "username", "password123")
     user = f.create_user()
     mutual_follower = f.create_user(username="mutual_follower")
     auth_user_follower = f.create_user(username="auth_user_follower")
@@ -53,9 +53,9 @@ def test_mutual_followers(api_client) -> None:
 @pytest.mark.django_db(transaction=True)
 def test_auth_user_not_in_follow_suggestions(api_client) -> None:
     """
-        Test that the authenticated user is not listed as a follow suggestion
+    Test that the authenticated user is not listed as a follow suggestion
     """
-    auth_user = _test_authenticate_user(api_client, 'username', 'password123')
+    auth_user = _test_authenticate_user(api_client, "username", "password123")
     user = f.create_user()
     mutual_follower = f.create_user(username="mutual_follower")
     auth_user_follower = f.create_user(username="auth_user_follower")

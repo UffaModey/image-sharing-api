@@ -16,46 +16,115 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='Follow',
+            name="Follow",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('modified_at', models.DateTimeField(auto_now=True)),
-                ('following', models.ForeignKey(help_text='User who is being followed', on_delete=django.db.models.deletion.CASCADE, related_name='followers', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(help_text='User who is following another user', on_delete=django.db.models.deletion.CASCADE, related_name='followings', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("modified_at", models.DateTimeField(auto_now=True)),
+                (
+                    "following",
+                    models.ForeignKey(
+                        help_text="User who is being followed",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="followers",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "user",
+                    models.ForeignKey(
+                        help_text="User who is following another user",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="followings",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Follows',
-                'ordering': ['created_at'],
+                "verbose_name_plural": "Follows",
+                "ordering": ["created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Post',
+            name="Post",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('modified_at', models.DateTimeField(auto_now=True)),
-                ('image', models.ImageField(help_text='Image uploaded by the user', upload_to='posts/')),
-                ('caption', models.CharField(max_length=100)),
-                ('created_by', models.ForeignKey(help_text='User who created the post', on_delete=django.db.models.deletion.CASCADE, related_name='posts', to=settings.AUTH_USER_MODEL)),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("modified_at", models.DateTimeField(auto_now=True)),
+                (
+                    "image",
+                    models.ImageField(
+                        help_text="Image uploaded by the user", upload_to="posts/"
+                    ),
+                ),
+                ("caption", models.CharField(max_length=100)),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        help_text="User who created the post",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="posts",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Posts',
-                'ordering': ['created_at'],
+                "verbose_name_plural": "Posts",
+                "ordering": ["created_at"],
             },
         ),
         migrations.CreateModel(
-            name='Like',
+            name="Like",
             fields=[
-                ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('modified_at', models.DateTimeField(auto_now=True)),
-                ('created_by', models.ForeignKey(help_text='User who liked the post', on_delete=django.db.models.deletion.CASCADE, related_name='liked_posts', to=settings.AUTH_USER_MODEL)),
-                ('post', models.ForeignKey(help_text='Post that was liked', on_delete=django.db.models.deletion.CASCADE, related_name='likes', to='imageshare.post')),
+                (
+                    "id",
+                    models.UUIDField(
+                        default=uuid.uuid4,
+                        editable=False,
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                ("created_at", models.DateTimeField(auto_now_add=True)),
+                ("modified_at", models.DateTimeField(auto_now=True)),
+                (
+                    "created_by",
+                    models.ForeignKey(
+                        help_text="User who liked the post",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="liked_posts",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "post",
+                    models.ForeignKey(
+                        help_text="Post that was liked",
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="likes",
+                        to="imageshare.post",
+                    ),
+                ),
             ],
             options={
-                'verbose_name_plural': 'Likes',
-                'ordering': ['created_at'],
+                "verbose_name_plural": "Likes",
+                "ordering": ["created_at"],
             },
         ),
     ]

@@ -7,25 +7,27 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('imageshare', '0003_rename_user_follow_created_by'),
+        ("imageshare", "0003_rename_user_follow_created_by"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='follow',
-            options={'ordering': ['-created_at'], 'verbose_name_plural': 'Follows'},
+            name="follow",
+            options={"ordering": ["-created_at"], "verbose_name_plural": "Follows"},
         ),
         migrations.AlterModelOptions(
-            name='like',
-            options={'ordering': ['-created_at'], 'verbose_name_plural': 'Likes'},
+            name="like",
+            options={"ordering": ["-created_at"], "verbose_name_plural": "Likes"},
         ),
         migrations.AlterModelOptions(
-            name='post',
-            options={'ordering': ['-created_at'], 'verbose_name_plural': 'Posts'},
+            name="post",
+            options={"ordering": ["-created_at"], "verbose_name_plural": "Posts"},
         ),
         migrations.AddConstraint(
-            model_name='like',
-            constraint=models.UniqueConstraint(fields=('post', 'liked_by'), name='unique_like'),
+            model_name="like",
+            constraint=models.UniqueConstraint(
+                fields=("post", "liked_by"), name="unique_like"
+            ),
         ),
     ]
