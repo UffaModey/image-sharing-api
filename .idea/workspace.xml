@@ -7,40 +7,7 @@
     <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/migrations/0002_rename_created_by_like_liked_by.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/migrations/0002_rename_created_by_like_liked_by.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/migrations/0003_rename_user_follow_created_by.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/migrations/0003_rename_user_follow_created_by.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/migrations/0004_alter_follow_options_alter_like_options_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/migrations/0004_alter_follow_options_alter_like_options_and_more.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/migrations/0005_follow_unique_follow.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/migrations/0005_follow_unique_follow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/imageshare/utils/pagination.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/utils/pagination.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/asgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/asgi.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/isa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/isa/wsgi.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/wsgi.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/conftest.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/conftest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_follow.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_follow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_like.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_like.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_posts.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_posts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/unit/test_user.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/unit/test_user.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/tests/utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/api.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0001_initial.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0002_remove_user_email_idx_remove_user_username_idx_and_more.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0002_remove_user_email_idx_remove_user_username_idx_and_more.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/migrations/0003_user_date_joined.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/migrations/0003_user_date_joined.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/serializers.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/serializers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/users/utils/pagination.py" beforeDir="false" afterPath="$PROJECT_DIR$/users/utils/pagination.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -258,7 +225,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729010020832</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="black formatting">
+      <created>1729011518588</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1729011518588</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -296,7 +270,8 @@
     <MESSAGE value="improve db query for follow suggestions for a user" />
     <MESSAGE value="improve db query for user list" />
     <MESSAGE value="unit tests for posts, likes and follow features" />
-    <option name="LAST_COMMIT_MESSAGE" value="unit tests for posts, likes and follow features" />
+    <MESSAGE value="black formatting" />
+    <option name="LAST_COMMIT_MESSAGE" value="black formatting" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/image_sharing_api$test_user.coverage" NAME="test_user Coverage Results" MODIFIED="1728897738791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/tests/unit" />

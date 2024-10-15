@@ -149,5 +149,8 @@ using Simple JWT for DRF. Increase the token life span from default 5 minutes in
 - Add `search_fields` and `list_filter` for Post admin view to enable an admin user to search for a post by its `caption` or `id` or filter posts by the `created_by` field.
 
 ## API Rate Limiting
+API rate limiting was implemented to improve security and preventing large spikes in API request calls, which can degrade overall performance.
+The throttling policy was set globally, using the `DEFAULT_THROTTLE_CLASSES` and `DEFAULT_THROTTLE_RATES` settings.
+An authenticated user may make 100 requests per day on the app while an anon user may make only 10 requests per day. 
 
 ## AI Image Classification and Caption Generation
