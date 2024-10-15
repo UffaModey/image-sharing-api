@@ -43,15 +43,22 @@ https://drawsql.app/teams/image-sharing-api/diagrams/image-sharing-api
 ## Linting and code formatting
 
 ## Testing
-Unit tests that cover the core functionality using Pytest and the native APIClient library.
-`poetry add pytest-django`
+Unit tests that cover the core functionality using Pytest and the native APIClient library. 
+Tests were written to:
+- ensure custom implementation of model fields.
+- ensure the custom methods in the model return the expected values.
+- cover the core functionality (e.g., liking a post, following a user, publishing a post).
+- verify error handling and edge cases
 
-User Tests
-- create user factories and carry out the following tests
-  - creat user, list all users, get user profile
+Install PyTest using poetry: `poetry add pytest-django`
+
+Create factories and carry out the following tests
+- User Tests: create user, list all users, get user profile
+- Post Tests: create posts, publish post, get posts by followed users, get posts by all users
+- Follow Tests: test follow self, test follow an already followed user, test mutual followers, test follow suggestions
+- Like Tests: test like post and get post likes
 
 ## Database query optimization
-
 Goal:  to optimize the database usage for speed and to limit the number of queries that are made to the db per request.
 
 ### Profile queries
