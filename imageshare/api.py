@@ -1,4 +1,4 @@
-# Third Party Stuff
+
 from rest_framework import status, viewsets, permissions, generics
 
 from rest_framework.exceptions import PermissionDenied
@@ -6,7 +6,6 @@ from django.shortcuts import get_object_or_404
 from rest_framework.decorators import action
 from django.db.models import Count
 from rest_framework import filters
-from django.db.models import Q
 from .utils.pagination import PostsPagination
 
 from .models import Post, Follow, Like

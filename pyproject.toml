@@ -21,6 +21,8 @@ django-debug-toolbar = "^4.4.6"
 django-dynamic-fixture = "^4.0.1"
 pytest-django = "^4.9.0"
 black = "^24.10.0"
+pygraphviz = "^1.14"
+django-extensions = "^3.2.3"
 
 
 [build-system]
