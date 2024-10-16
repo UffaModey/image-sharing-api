@@ -12,8 +12,22 @@ in progress, in review, and done.
 
 [View the project repo with tasks here ](https://github.com/users/UffaModey/projects/1)
 
+
+## Getting Started
+1. clone the project from it remote repo on GitHub to your local pc
+2. in the project home folder create and activate a virtual environment
+3. install the project dependencies in the virtual environment
+4. run python manage.py runserver to run the project locally.
+5. on Postman, create a user 
+6. authenticate the user and get a token for request.
+
+
 ## API Documentation
 API reference doc on Postman 
+
+
+## AI Image Classification and Caption Generation
+
 
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
@@ -152,5 +166,3 @@ using Simple JWT for DRF. Increase the token life span from default 5 minutes in
 API rate limiting was implemented to improve security and preventing large spikes in API request calls, which can degrade overall performance.
 The throttling policy was set globally, using the `DEFAULT_THROTTLE_CLASSES` and `DEFAULT_THROTTLE_RATES` settings.
 An authenticated user may make 100 requests per day on the app while an anon user may make only 10 requests per day. 
-
-## AI Image Classification and Caption Generation
