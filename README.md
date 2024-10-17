@@ -50,7 +50,8 @@ DATABASES = {
 - Run `python manage.py migrate`
 
 ## Database Schema 
-View database model schema designs generated using pygraphviz
+[View database model schema designs generated using pygraphviz
+](https://github.com/UffaModey/image-sharing-api/blob/develop/models_visualized.png)
 
 ## Linting and code formatting
 We used [Black](https://pypi.org/project/black/) to format code to the PEP8 standard
