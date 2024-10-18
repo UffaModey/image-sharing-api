@@ -40,15 +40,22 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
+    'django.contrib.sites',
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework',
+    'rest_framework.authtoken',
     "debug_toolbar",
     "users.apps.UsersConfig",
     "imageshare.apps.ImageshareConfig",
-    "rest_framework",
     "django_extensions",
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth.registration',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google', # <- Support Login with Google
 ]
 
 AUTH_USER_MODEL = "users.User"
@@ -62,7 +69,13 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "allauth.account.middleware.AccountMiddleware",
 ]
+
+ACCOUNT_AUTHENTICATION_METHOD = "email"  # Use Email / Password authentication
+ACCOUNT_USERNAME_REQUIRED = False
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "none"  # Do not require email confirmation
 
 INTERNAL_IPS = [
     # ...
@@ -197,4 +210,30 @@ DEBUG_TOOLBAR_PANELS = [
 GRAPH_MODELS = {
   'all_applications': True,
   'group_models': True,
+}
+
+# Google OAuth
+GOOGLE_OAUTH_CLIENT_ID = os.getenv("GOOGLE_OAUTH_CLIENT_ID")
+GOOGLE_OAUTH_CLIENT_SECRET = os.getenv("GOOGLE_OAUTH_CLIENT_SECRET")
+GOOGLE_OAUTH_CALLBACK_URL = os.getenv("GOOGLE_OAUTH_CALLBACK_URL")
+
+# django-allauth (social)
+# Authenticate if local account with this email address already exists
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+# Connect local account and social account if local account with that email address already exists
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_PROVIDERS = {
+    "google": {
+        "APPS": [
+            {
+                "client_id": GOOGLE_OAUTH_CLIENT_ID,
+                "secret": GOOGLE_OAUTH_CLIENT_SECRET,
+                "key": "",
+            },
+        ],
+        "SCOPE": ["profile", "email"],
+        "AUTH_PARAMS": {
+            "access_type": "online",
+        },
+    }
 }

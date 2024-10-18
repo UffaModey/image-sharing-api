@@ -151,7 +151,11 @@ This will enforce the uniqueness at the database level.
 - Follow suggestions - Do not include the authenticated user as a follow suggestion
 
 ## Authentication
-using Simple JWT for DRF. Increase the token life span from default 5 minutes in `settings.py` file.
+1. Using Simple JWT for DRF. Increase the token life span from default 5 minutes in `settings.py` file.
+2. Using Google Auth
+
+## Using Google sign-in to create JWT authentication tokens
+Use `poetry add "dj-rest-auth[with_social]"` to handle social authentication. 
 
 ## Additional Features
 - Pagination for `Posts` and `Users`  using `rest_framework` `PageNumberPagination`

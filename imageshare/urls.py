@@ -5,7 +5,7 @@ from .api import (
     MutualFollowersViewSet,
     FollowSuggestionsViewSet,
     PostLikeView,
-    PostUnlikeView,
+    PostUnlikeView, GoogleLogin, GoogleLoginCallback, LoginPage
 )
 from rest_framework.routers import DefaultRouter
 

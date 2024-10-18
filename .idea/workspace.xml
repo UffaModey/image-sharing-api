@@ -7,6 +7,12 @@
     <list default="true" id="f232a302-511c-4d9b-8593-f6e9401c97a1" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageshare/api.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/api.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/imageshare/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/imageshare/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/isa/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/isa/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/isa/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -33,6 +40,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -118,7 +126,7 @@
       <workItem from="1728246204832" duration="19000" />
       <workItem from="1728246268794" duration="28940000" />
       <workItem from="1728462116101" duration="16686000" />
-      <workItem from="1729151294251" duration="347000" />
+      <workItem from="1729151294251" duration="6423000" />
     </task>
     <task id="LOCAL-00001" summary="set up">
       <created>1727270614927</created>
@@ -253,7 +261,14 @@
       <option name="project" value="LOCAL" />
       <updated>1729090468690</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="generate db model schema">
+      <created>1729160886867</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1729160886867</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
