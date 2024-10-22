@@ -1,18 +1,24 @@
+# Standard Library Imports
+import logging
 
-from rest_framework import status, viewsets, permissions, generics
-
-from rest_framework.exceptions import PermissionDenied
+# Django Imports
 from django.shortcuts import get_object_or_404
-from rest_framework.decorators import action
 from django.db.models import Count
-from rest_framework import filters
-from .utils.pagination import PostsPagination
 
-from .models import Post, Follow, Like
-from users.models import User
+# Django Rest Framework Imports
+from rest_framework import status, viewsets, permissions, generics, filters
+from rest_framework.exceptions import PermissionDenied, ParseError, NotFound
+from rest_framework.decorators import action
 from rest_framework.response import Response
-from rest_framework.exceptions import ParseError, NotFound
+
+# Project-Specific Imports
+from .utils.pagination import PostsPagination
+from .models import Post, Follow, Like
 from .serializers import PostSerializer, FollowSerializer
+from users.models import User
+
+# Logger Initialization
+logger = logging.getLogger(__name__)
 
 
 class PostViewSet(viewsets.ModelViewSet):

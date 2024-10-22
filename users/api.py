@@ -2,6 +2,8 @@
 from rest_framework import status, viewsets, permissions
 
 from rest_framework.permissions import AllowAny
+from rest_framework.response import Response
+from rest_framework.decorators import action
 
 from .models import User
 from .serializers import UserSerializer
@@ -22,3 +24,9 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         serializer.save()
+
+    @action(methods=["GET"], detail=False)
+    def me(self, request):
+        user = self.request.user
+        serializer = self.get_serializer(user)
+        return Response(serializer.data)

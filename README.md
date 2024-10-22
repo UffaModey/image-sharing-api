@@ -151,7 +151,22 @@ This will enforce the uniqueness at the database level.
 - Follow suggestions - Do not include the authenticated user as a follow suggestion
 
 ## Authentication
-using Simple JWT for DRF. Increase the token life span from default 5 minutes in `settings.py` file.
+1. Using Simple JWT for DRF. Increase the token life span from default 5 minutes in `settings.py` file.
+2. Using Google Auth
+
+## Using Google sign-in to create JWT authentication tokens
+Use `poetry add "dj-rest-auth[with_social]"` to handle social authentication. 
+
+Ensure that the `TEMPLATES` setting in settings.py includes the path to the templates directory. This will enable us to 
+view the login page in `imageshare/templates/pages/login.html`
+
+`'DIRS': [os.path.join(BASE_DIR, 'templates')],`
+
+In this implementation, we have integrated Google OAuth2 authentication into our Django-based application using Django Rest Framework (DRF) and dj-rest-auth. Users can sign in via their Google accounts. Here's how it works:
+
+- LoginPage: Renders the login page with Google OAuth callback information.
+- GoogleLogin: Extends SocialLoginView to handle the Google OAuth login process, including exchanging the authorization code for an access token.
+- GoogleLoginCallback: Handles the OAuth callback from Google. It fetches an access token, retrieves the user’s information from Google, and either gets or creates a corresponding user in the Django system. The user is then authenticated and issued a JWT token for subsequent requests.
 
 ## Additional Features
 - Pagination for `Posts` and `Users`  using `rest_framework` `PageNumberPagination`
