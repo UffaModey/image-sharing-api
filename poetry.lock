@@ -1003,6 +1003,17 @@ files = [
 ]
 
 [[package]]
+name = "random-password-generator"
+version = "2.2.0"
+description = "Simple and custom random password generator for python"
+optional = false
+python-versions = "*"
+files = [
+    {file = "random-password-generator-2.2.0.tar.gz", hash = "sha256:d8a8e2c0420fdd2c096bc7948f62701cb36761aea42e59c9a504d02f0e359d43"},
+    {file = "random_password_generator-2.2.0-py3-none-any.whl", hash = "sha256:da9ce21a9b6a99dfda940596fe417a55470a2e0343fae56dea785f431780d8a9"},
+]
+
+[[package]]
 name = "requests"
 version = "2.32.3"
 description = "Python HTTP for Humans."
@@ -1098,4 +1109,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11.5"
-content-hash = "07bef8f293d986ea0fc403b13bf14fe7fa8d5e10daf0544a963613221ff7b6e0"
+content-hash = "f04ae92f0a54b8e4da4e8596e90a4a6912582b32f5288f2a08361ff11d4833d8"

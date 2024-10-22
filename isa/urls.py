@@ -23,7 +23,7 @@ from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-from imageshare.api import GoogleLogin, GoogleLoginCallback, LoginPage
+from .google_auth import GoogleLogin, GoogleLoginCallback, LoginPage
 
 urlpatterns = [
     path("imageshare/", include("imageshare.urls")),
