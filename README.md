@@ -14,20 +14,31 @@ in progress, in review, and done.
 
 
 ## Getting Started
-1. clone the project from it remote repo on GitHub to your local pc
-2. in the project home folder create and activate a virtual environment
-3. install the project dependencies in the virtual environment
-4. run python manage.py runserver to run the project locally.
-5. on Postman, create a user 
-6. authenticate the user and get a token for request.
+1. Clone the Project: Clone the project from its remote repository on GitHub to your local machine
+2. Set Up a Virtual Environment: In the project home folder, create and activate a virtual environment to isolate project dependencies:
+3. Install Project Dependencies: The project uses Poetry to manage dependencies. 
+`poetry install`
+This will install all the packages listed in the` pyproject.toml` file and create a virtual environment for the project.
+
+4. Configure the Database: By default, the project is configured to use PostgreSQL. However, if PostgreSQL is not available, the project will automatically fall back to SQLite. Ensure your .env file includes the necessary database credentials for PostgreSQL (or SQLite will be used by default).
+5. Run the Project Locally: Start the Django development server. You can now access the project locally at `http://127.0.0.1:8000/`.
+6. Authentication and JWT Tokens for API Requests: There are two methods for creating a user account and obtaining a JWT token for the user to authenticate their requests.
+    1. Create and Authenticate a User
+       1. Use Postman or another API client to create a new user in the system by sending a POST request to the appropriate endpoint.
+       2. Once the user is created, authenticate by sending the user's username and password to the `/api/token/` endpoint. 
+       3. Copy the `access token` returned from the request response.
+    2. Social login with Google Auth
+       1. Open the project login page `http://127.0.0.1:8000/login/` on the browser and click "Sign in with Google"
+       2. Copy the `access_token` provided at the end of the login flow
 
 
 ## API Documentation
-API reference doc on Postman 
+[API reference doc on Postman ](https://www.postman.com/orbital-module-saganist-36666939/image-sharing-api-public/collection/zvq38u6/image-sharing-api-documentation-reference?action=share&creator=17251563)
 
 
 ## AI Image Classification and Caption Generation
-
+TO DO: Build LLM to classify images into categories by fine-tuning a pretrained neural network to recognise these categories groups.
+use resnet18, the fastest widely used computer vision model to train the model.
 
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
@@ -154,7 +165,7 @@ This will enforce the uniqueness at the database level.
 1. Using Simple JWT for DRF. Increase the token life span from default 5 minutes in `settings.py` file.
 2. Using Google Auth
 
-## Using Google sign-in to create JWT authentication tokens
+### Using Google sign-in to create JWT authentication tokens
 Use `poetry add "dj-rest-auth[with_social]"` to handle social authentication. 
 
 Ensure that the `TEMPLATES` setting in settings.py includes the path to the templates directory. This will enable us to 
