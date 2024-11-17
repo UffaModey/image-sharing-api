@@ -1,5 +1,6 @@
 # Standard Library Imports
 import logging
+from PIL import Image
 
 # Django Imports
 from django.shortcuts import get_object_or_404
@@ -13,6 +14,7 @@ from rest_framework.response import Response
 
 # Project-Specific Imports
 from .utils.pagination import PostsPagination
+from .utils.imageclassifier import classify_image
 from .models import Post, Follow, Like
 from .serializers import PostSerializer, FollowSerializer
 from users.models import User
@@ -44,8 +46,23 @@ class PostViewSet(viewsets.ModelViewSet):
         return queryset
 
     def perform_create(self, serializer):
-        # Set the created_by field to the current user when creating a post
-        serializer.save(created_by=self.request.user)
+        # Retrieve the image file from the request
+        image_file = self.request.FILES.get("image")
+
+        if image_file:
+            # Open the in-memory image file
+            image = Image.open(image_file)
+
+            # Call classify_image with the opened image or its content
+            ai_caption = classify_image(image)["label"]
+
+            # Save the serializer with the additional ai_caption and user
+            serializer.save(
+                created_by=self.request.user,
+                caption=f"AI generated caption: {ai_caption}",
+            )
+        else:
+            raise ParseError("No image file provided.")
 
     def get_object(self):
         post = Post.objects.prefetch_related("likes", "created_by").get(

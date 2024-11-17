@@ -40,6 +40,8 @@ This will install all the packages listed in the` pyproject.toml` file and creat
 TO DO: Build LLM to classify images into categories by fine-tuning a pretrained neural network to recognise these categories groups.
 use resnet18, the fastest widely used computer vision model to train the model.
 
+The categories for images are: Nature, Sports, Architecture, and Fashion
+
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
 - Create an Azure PostgreSQL resource on Azure portal.
