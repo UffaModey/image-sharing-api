@@ -19,6 +19,7 @@ class PostSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = [
             "id",
+            "caption",
             "created_by",
             "created_at",
             "modified_at",
