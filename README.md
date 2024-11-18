@@ -37,10 +37,13 @@ This will install all the packages listed in the` pyproject.toml` file and creat
 
 
 ## AI Image Classification and Caption Generation
-TO DO: Build LLM to classify images into categories by fine-tuning a pretrained neural network to recognise these categories groups.
+Build LLM to classify images into categories by fine-tuning a pretrained neural network to recognise these categories groups.
 use resnet18, the fastest widely used computer vision model to train the model.
 
 The categories for images are: Nature, Sports, Architecture, and Fashion
+
+Read the process of building the model and integrating it to the app documented as a blog post 
+https://fafa.codes/build-an-ml-model-for-classifying-images-in-a-django-api-app-using-fastai-hugging-face-gradio-and-colab#heading-cleaning-the-data
 
 ## Database
 Azure Database for PostgreSQL [Flexible Server documentation](https://learn.microsoft.com/en-us/azure/postgresql/flexible-server/how-to-deploy-on-azure-free-account)
